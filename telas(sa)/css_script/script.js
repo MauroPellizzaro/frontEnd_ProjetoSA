@@ -3,7 +3,7 @@ const body = document.body;
 const navbar = document.querySelector('.navbar');
 const table = document.querySelector('.table');
 const formControls = document.querySelectorAll('.form-control');
-const container = document.querySelector('.containerAlterado', '.containerOpcoes');
+const container = document.querySelector('.containerAlterado');
 
 
 toggleButton.addEventListener('click', () => {
@@ -38,7 +38,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         // Armazenar a autenticação no localStorage
         localStorage.setItem('auth', 'true');
         alert('Login realizado com sucesso!');
-        window.location.href = 'emprestimos.html'; // Redireciona para outra página
+        window.location.href = 'vizualizacaoemprestimo.html'; // Redireciona para outra página
     } else {
         alert('Nome ou ID incorretos.');
     }
