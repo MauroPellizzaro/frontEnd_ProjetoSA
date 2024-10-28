@@ -23,7 +23,7 @@ toggleButton.addEventListener('click', () => {
         toggleButton.textContent = 'Modo Escuro';
     }
 });
-
+//=========================================================================================================================================
 
 
 
@@ -35,7 +35,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
     // Simples validação (pode ser substituída por uma chamada ao backend para autenticação)
     if (username === 'admin' && password === '1234') {
-        // Armazenar a autenticação no localStorage
+        // Armazenar a autenticação no localStorage vamo mudar isso no futuro puxando as info do banco
         localStorage.setItem('auth', 'true');
         alert('Login realizado com sucesso!');
         window.location.href = 'vizualizacaoemprestimo.html'; // Redireciona para outra página
@@ -81,3 +81,125 @@ function filterTable() {
         rows[i].style.display = rowVisible ? "" : "none";
     }
 }
+// Adiciona item selecionado à lista de empréstimos
+function adicionarItem() {
+    const itemSelect = document.getElementById('itemSelect');
+    const itemSelecionado = itemSelect.value;
+
+    if (itemSelecionado) {
+        const listaItens = document.getElementById('listaItens');
+        const li = document.createElement('li');
+        li.className = 'list-group-item d-flex justify-content-between align-items-center';
+        li.textContent = itemSelecionado;
+
+        const btnRemover = document.createElement('button');
+        btnRemover.className = 'btn btn-danger btn-sm';
+        btnRemover.textContent = 'Remover';
+        btnRemover.onclick = function() {
+            listaItens.removeChild(li);
+        };
+
+        li.appendChild(btnRemover);
+        listaItens.appendChild(li);
+    } else {
+        alert('Por favor, selecione um item.');
+    }
+}
+// Array para armazenar os itens emprestados
+let itensEmprestados = [];
+
+// Função para adicionar item à lista de empréstimos
+function adicionarItem() {
+    const select = document.getElementById('selectItens');
+    const itemSelecionado = select.value;
+
+    // Pega a data de devolução global
+    const dataDevolucaoGlobal = document.getElementById('dataDevolucaoGlobal').value;
+
+    // Cria o campo de item e o campo de data de devolução
+    const lista = document.getElementById('listaItens');
+    const div = document.createElement('div');
+    div.classList.add('input-group', 'mb-2');
+
+    const inputItem = document.createElement('input');
+    inputItem.type = 'text';
+    inputItem.classList.add('form-control');
+    inputItem.value = itemSelecionado;
+    inputItem.readOnly = true;
+
+    const inputData = document.createElement('input');
+    inputData.type = 'date';
+    inputData.classList.add('form-control');
+    
+    // Define a data de devolução global como padrão, se ela estiver preenchida
+    if (dataDevolucaoGlobal) {
+        inputData.value = dataDevolucaoGlobal;
+    }
+
+    const btnRemover = document.createElement('button');
+    btnRemover.classList.add('btn', 'btn-danger');
+    btnRemover.textContent = 'Remover';
+    btnRemover.onclick = function () {
+        div.remove();
+        // Remove o item da lista de itens emprestados
+        const index = itensEmprestados.findIndex(item => item.item === itemSelecionado);
+        if (index > -1) {
+            itensEmprestados.splice(index, 1);
+        }
+    };
+
+    // Adiciona os campos ao div
+    div.appendChild(inputItem);
+    div.appendChild(inputData); // Campo para a data de devolução
+    div.appendChild(btnRemover);
+    lista.appendChild(div);
+
+    // Adiciona o item e a data de devolução ao array
+    itensEmprestados.push({ item: itemSelecionado, dataDevolucao: inputData });
+}
+
+// Captura o evento de envio do formulário
+document.getElementById('emprestimoForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    
+    const pessoa = document.getElementById('pessoa').value;
+
+    // Coleta os itens e as respectivas datas de devolução
+    const emprestimo = itensEmprestados.map((emprestimo) => ({
+        item: emprestimo.item,
+        dataDevolucao: emprestimo.dataDevolucao.value
+    }));
+
+    console.log({
+        pessoa: pessoa,
+        emprestimo: emprestimo
+    });
+
+    alert('Empréstimo cadastrado com sucesso!');
+});
+
+// Captura o evento de envio do formulário
+/*document.getElementById('emprestimoForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const pessoa = document.getElementById('pessoa').value.trim();
+    const itens = [];
+
+    // Pegar todos os itens adicionados
+    document.querySelectorAll('#listaItens li').forEach(function(item) {
+        itens.push(item.firstChild.textContent);
+    });
+
+    if (pessoa && itens.length > 0) {
+        // Aqui você pode realizar uma chamada ao backend para salvar os dados, por exemplo.
+        console.log('Empréstimo realizado para:', pessoa);
+        console.log('Itens:', itens);
+
+        alert('Empréstimo realizado com sucesso!');
+        // Limpar o formulário após o envio
+        document.getElementById('emprestimoForm').reset();
+        document.getElementById('listaItens').innerHTML = '';
+    } else {
+        alert('Por favor, preencha todos os campos.');
+    }
+});*/
