@@ -10,12 +10,15 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css_script/style2.css">
-    <title>IndexSA</title>
+    <title>Estoque</title>
 
+    <style>
+        .darktabela {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+    </style>
 </head>
-
-
-
 
 <body onload="checkAuth()">
 
@@ -85,50 +88,64 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                   Colaboradores
+                    Estoque
                 </span>
                 <button class="btn btn-secondary btn-toggle-dark" id="toggleDarkMode">Modo Escuro</button>
             </div>
         </div>
     </nav>
 
-    <body>
-        <div class="container mt-5">
-            <h2>Pessoas</h2>
-            <a href="cadastropessoa.html"><button class="btn btn-primary orientacao mb-3" id="">Cadastrar Pessoa</button></a>
-            
-            <input type="search" id="searchInput" placeholder="Pesquisar.." class="form-control mb-3"
-                onkeyup="filterTable()">
-            <table class="table table-bordered table-striped tablealterada darktabela">
-                <thead>
-                    <tr class="table-primary">
-                        <th>Nome</th>
-                        <th>Cargo</th>
-                        <th>Data de Nascimento</th>
-                        <th>Opções</th>
 
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td>Mauro</td>
-                        <td>Aluno</td>
-                        <td>2004-04-28</td>
-                        <td><button class="btn btn-success orientacao" id="">Editar</button> <button class="btn btn-danger orientacao"
-                                id="">Excluir</button> </td>
+    <div class="container mt-5">
+        <h2>Itens em Estoque</h2>
+        <input type="search" id="searchInput" placeholder="Pesquisar.." class="form-control mb-3"
+            onkeyup="filterTable()">
+        <table class="table table-bordered table-striped tablealterada table-hover">
+            <thead>
+                <tr class="table-primary">
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Quantidade em Estoque</th>
+                    <th>CA</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>1</td>
+                    <td>Capacete</td>
+                    <td>EPI</td>
+                    <td>50</td>
+                    <td>123456</td>
+                    <td><button class="btn btn-success">Editar</button> <button class="btn btn-danger">Excluir</button></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Martelo</td>
+                    <td>Ferramenta</td>
+                    <td>30</td>
+                    <td>654321</td>
+                    <td><button class="btn btn-success">Editar</button> <button class="btn btn-danger">Excluir</button></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Óculos de Proteção</td>
+                    <td>EPI</td>
+                    <td>20</td>
+                    <td>789012</td>
+                    <td><button class="btn btn-success">Editar</button> <button class="btn btn-danger">Excluir</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <script src="css_script/script.js"></script>
 
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-        <script src="css_script/script.js"></script>
-    </body>
-
-    <footer>
-        FIESC:SENAI
-        Todos os Direitos Reservados ®
+    <footer class="text-center mt-5">
+        FIESC:SENAI - Todos os Direitos Reservados ®
     </footer>
+
+</body>
 
 </html>

@@ -10,12 +10,15 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css_script/style2.css">
-    <title>IndexSA</title>
+    <title>Visualização</title>
 
+    <style>
+        .darktabela {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+    </style>
 </head>
-
-
-
 
 <body onload="checkAuth()">
 
@@ -85,50 +88,66 @@
                     </li>
                 </ul>
                 <span class="navbar-text">
-                   Colaboradores
+                    Empréstimos
                 </span>
                 <button class="btn btn-secondary btn-toggle-dark" id="toggleDarkMode">Modo Escuro</button>
             </div>
         </div>
     </nav>
 
-    <body>
-        <div class="container mt-5">
-            <h2>Pessoas</h2>
-            <a href="cadastropessoa.html"><button class="btn btn-primary orientacao mb-3" id="">Cadastrar Pessoa</button></a>
-            
-            <input type="search" id="searchInput" placeholder="Pesquisar.." class="form-control mb-3"
-                onkeyup="filterTable()">
-            <table class="table table-bordered table-striped tablealterada darktabela">
-                <thead>
-                    <tr class="table-primary">
-                        <th>Nome</th>
-                        <th>Cargo</th>
-                        <th>Data de Nascimento</th>
-                        <th>Opções</th>
+    <div class="container mt-5">
+        <h2>Empréstimos</h2>
+        <input type="search" id="searchInput" placeholder="Pesquisar.." class="form-control mb-3"
+            onkeyup="filterTable()">
+        <table class="table table-bordered table-striped tablealterada table-hover" >
+            <thead>
+                <tr class="table-primary">
+                    <th>ID</th>
+                    <th>Item</th>
+                    <th>Tipo Item</th>
+                    <th>Validade</th>
+                    <th>Data do Empréstimo</th>
+                    <th>Data de Devolução</th>
+                    <th>Opções</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td>1</td>
+                    <td>Capacete</td>
+                    <td>EPI</td>
+                    <td>2025-08-15</td>
+                    <td>2024-09-01</td>
+                    <td>2024-09-15</td>
+                    <td><button class="btn btn-success orientacao" id="">Editar</button> <button class="btn btn-danger orientacao"
+                        id="">Excluir</button> </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Martelo</td>
+                    <td>Ferramenta</td>
+                    <td>Indeterminado</td>
+                    <td>2024-09-03</td>
+                    <td>Pendente</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Óculos de Proteção</td>
+                    <td>EPI</td>
+                    <td>2026-05-20</td>
+                    <td>2024-09-02</td>
+                    <td>2024-09-09</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td>Mauro</td>
-                        <td>Aluno</td>
-                        <td>2004-04-28</td>
-                        <td><button class="btn btn-success orientacao" id="">Editar</button> <button class="btn btn-danger orientacao"
-                                id="">Excluir</button> </td>
+    <script src="css_script/script.js"></script>
 
-
-                    </tr>
-
-                </tbody>
-            </table>
-        </div>
-        <script src="css_script/script.js"></script>
-    </body>
-
-    <footer>
-        FIESC:SENAI
-        Todos os Direitos Reservados ®
+    <footer class="text-center mt-5">
+        FIESC:SENAI - Todos os Direitos Reservados ®
     </footer>
+
+</body>
 
 </html>
