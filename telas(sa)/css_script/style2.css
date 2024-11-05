@@ -148,6 +148,34 @@ table.tablealterada tbody tr:hover td {
     
 }
 
+.dark-mode input::placeholder {
+    color: #ffffff; /* Cor do placeholder no modo escuro */
+}
+
+.dark-mode input{
+    background-color: #4a4a4a;
+}
+.dark-mode input:focus{
+    background-color: #4a4a4a;
+}
+.dark-mode input{
+    color: #ffffff;
+}
+.dark-mode input:focus{
+    color: #ffffff;
+}
+
+
+.dark-mode select{
+    background-color: #4a4a4a;
+}
+.dark-mode select:focus{
+    background-color: #4a4a4a;
+}
+
+.dark-mode select {
+    color: white;
+}
 
 .dark-mode th {
     background-color: #4a4a4a; /* Cor de fundo dos cabeçalhos */

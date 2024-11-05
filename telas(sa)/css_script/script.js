@@ -38,7 +38,7 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         // Armazenar a autenticação no localStorage vamo mudar isso no futuro puxando as info do banco
         localStorage.setItem('auth', 'true');
         alert('Login realizado com sucesso!');
-        window.location.href = 'vizualizacaoemprestimo.html'; // Redireciona para outra página
+        window.location.href = 'visualizacaoemprestimo.html'; // Redireciona para outra página
     } else {
         alert('Nome ou ID incorretos.');
     }
@@ -83,28 +83,12 @@ function filterTable() {
 }
 // Adiciona item selecionado à lista de empréstimos
 function adicionarItem() {
-    const itemSelect = document.getElementById('itemSelect');
-    const itemSelecionado = itemSelect.value;
+    const select = document.getElementById('selectItens');
+    const itemSelecionado = select.value;
+    const dataDevolucaoGlobal = document.getElementById('dataDevolucaoGlobal').value;
 
-    if (itemSelecionado) {
-        const listaItens = document.getElementById('listaItens');
-        const li = document.createElement('li');
-        li.className = 'list-group-item d-flex justify-content-between align-items-center';
-        li.textContent = itemSelecionado;
-
-        const btnRemover = document.createElement('button');
-        btnRemover.className = 'btn btn-danger btn-sm';
-        btnRemover.textContent = 'Remover';
-        btnRemover.onclick = function() {
-            listaItens.removeChild(li);
-        };
-
-        li.appendChild(btnRemover);
-        listaItens.appendChild(li);
-    } else {
-        alert('Por favor, selecione um item.');
-    }
 }
+
 // Array para armazenar os itens emprestados
 let itensEmprestados = [];
 
@@ -178,28 +162,3 @@ document.getElementById('emprestimoForm').addEventListener('submit', function (e
     alert('Empréstimo cadastrado com sucesso!');
 });
 
-// Captura o evento de envio do formulário
-/*document.getElementById('emprestimoForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const pessoa = document.getElementById('pessoa').value.trim();
-    const itens = [];
-
-    // Pegar todos os itens adicionados
-    document.querySelectorAll('#listaItens li').forEach(function(item) {
-        itens.push(item.firstChild.textContent);
-    });
-
-    if (pessoa && itens.length > 0) {
-        // Aqui você pode realizar uma chamada ao backend para salvar os dados, por exemplo.
-        console.log('Empréstimo realizado para:', pessoa);
-        console.log('Itens:', itens);
-
-        alert('Empréstimo realizado com sucesso!');
-        // Limpar o formulário após o envio
-        document.getElementById('emprestimoForm').reset();
-        document.getElementById('listaItens').innerHTML = '';
-    } else {
-        alert('Por favor, preencha todos os campos.');
-    }
-});*/
