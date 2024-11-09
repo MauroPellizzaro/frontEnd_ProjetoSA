@@ -10,93 +10,109 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css_script/style2.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <title>IndexSA</title>
-
-
+    <style>
+        .btn-uniform {
+            min-height: 60px;
+            width: 100%;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-primary" data-bs-theme="dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
                 <img src="img/image-removebg-preview.png" alt="Logo" width="80" height="40">
             </a>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Empréstimo
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="fazeremprestimo.html">Fazer Empréstimo</a></li>
-                            <li><a class="dropdown-item" href="vizualizacaoemprestimo.html">Dashboard</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Estoque
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="cadastroitem.html">Cadastrar Item</a></li>
-                            <li><a class="dropdown-item" href="vizualizacaoemprestimo.html">Dashboard</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Colaboradores
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="cadastropessoa.html">Cadastrar Pessoa</a></li>
-                            <li><a class="dropdown-item" href="colaborador.html">Dashboard</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html">Login</a>
-                    </li>
-
-                </ul>
-                <span class="navbar-text">
-                    Home
-                </span>
-                <button class="btn btn-secondary btn-toggle-dark" id="toggleDarkMode">Modo Escuro</button>
+                <button class="btn btn-secondary btn-toggle-dark " id="toggleDarkMode">Modo Escuro</button>
             </div>
         </div>
     </nav>
 
     <div class="container mt-5 containerAlterado">
-        <h2>Cadastro</h2>
-        <form>
-            <div>
-                <div class="mb-2">
-                    <label class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" placeholder="Nome" required>
-                </div>
-                <div class="mb-2">
-                    <label class="form-label">ID Pessoa</label>
-                    <input type="text" class="form-control" placeholder="ID" required>
-                </div>
+        <h2>Bem Vindo</h2>
+        <br> <br>
+        <div class="row row-cols-1 row-cols-md-3 g-3">
+
+            <!-- Botões de navegação com ícones e tamanhos iguais -->
+            <div class="col">
+                <a href="fazeremprestimo.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-arrow-down-circle me-2"></i>Fazer Empréstimo</a>
             </div>
-            <button type="submit" class="btn btn-primary" value="1">Cadastrar</button>
-            <button type="reset" class="btn btn-danger" value="2">Limpar Campos</button>
-        </form>
+
+
+            <div class="col">
+                <a href="cadastrousuario.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-person-badge-fill me-2"></i>Cadastrar Usuário</a>
+            </div>
+            <div class="col">
+                <a href="cadastrotipoitem.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-clipboard-plus me-2"></i>Cadastrar Tipo de Item</a>
+            </div>
+
+            <div class="col">
+                <a href="visualizacaoemprestimo.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-bar-chart-fill me-2"></i>Dashboard de Empréstimo</a>
+            </div>
+            <div class="col">
+                <a href="cadastroitem.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-plus-circle-fill me-2"></i>Cadastrar Item</a>
+            </div>
+            <div class="col">
+                <a href="visualizacaoestoque.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-box-seam me-2"></i>Dashboard de Itens</a>
+            </div>
+            <div class="col">
+                <a href="cadastropessoa.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-person-plus-fill me-2"></i>Cadastrar Colaborador</a>
+            </div>
+            <div class="col">
+                <a href="visualizacaopessoas.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-people-fill me-2"></i>Dashboard de Colaboradores</a>
+            </div>
+
+            <div class="col">
+                <a href="visualizacaousuarios.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-person-lines-fill me-2"></i>Dashboard de Usuários</a>
+            </div>
+
+            <div class="col">
+                <a href="visualizacaotipositem.html"
+                    class="btn btn-primary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-card-checklist me-2"></i>Dashboard de Tipos de Item</a>
+            </div>
+            <div class="col">
+                <a href="login.html"
+                    class="btn btn-secondary btn-uniform d-flex justify-content-center align-items-center"><i
+                        class="bi bi-box-arrow-in-right me-2"></i>Login</a>
+            </div>
+        </div>
     </div>
 
     <script src="css_script/script.js"></script>
 
-    </script>
-
 </body>
-<footer>
-    FIESC:SENAI
+
+<footer class="text-center mt-4">
+    FIESC: SENAI<br>
     Todos os Direitos Reservados ®
 </footer>
 

@@ -10,7 +10,6 @@
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css_script/style2.css">
     <title>Fazer Empréstimos</title>
-
 </head>
 
 <body onload="checkAuth()">
@@ -39,7 +38,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Estoque
+                            Itens
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="cadastroitem.html">Cadastrar Item</a></li>
@@ -52,8 +51,8 @@
                             Colaboradores
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="cadastropessoa.html">Cadastrar Pessoa</a></li>
-                            <li><a class="dropdown-item" href="colaborador.html">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="cadastropessoa.html">Cadastrar Colaborador</a></li>
+                            <li><a class="dropdown-item" href="visualizacaopessoas.html">Dashboard</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -76,6 +75,9 @@
                             <li><a class="dropdown-item" href="visualizacaotipositem.html">Dashboard</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Login</a>
+                    </li>
                 </ul>
                 <span class="navbar-text">
                     Fazer Empréstimo 
@@ -85,25 +87,20 @@
         </div>
     </nav>
 
-
     <!-- Configura a div principal para expandir conforme os itens são adicionados -->
     <div class="container mb-5 mt-5 containerAlterado container-scrollable">
         <h2>Empréstimo de Itens</h2>
-        <form id="emprestimoForm">
-            <!-- Campo para definir a data de devolução global -->
+        <form id="emprestimoForm" id="emprestimoForm" onsubmit="cadastrarEmprestimo(event)">
+            <!-- Removido o campo de Data de Devolução -->
             <div class="mb-3">
-                <label class="form-label">Data de Devolução</label>
-                <input type="date" class="form-control" id="dataDevolucaoGlobal">
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Pessoa</label>
-                <input type="text" class="form-control " id="pessoa" placeholder="Nome da Pessoa" required>
+                <label class="form-label">Nome</label>
+                <input type="text"  class="form-control " id="pessoa" placeholder="Nome da Pessoa" required>
             </div>
 
             <h5>Itens</h5>
             <div class="input-group mb-3">
-                <select class="form-select" id="selectItens">
+                <select class="form-select selectAlterado" id="selectItens" required>
+                    <option selected></option>
                     <option value="Capacete">Capacete</option>
                     <option value="Luvas">Luvas</option>
                     <option value="Botas de Segurança">Botas de Segurança</option>
@@ -111,14 +108,13 @@
                     <option value="Máscara">Máscara</option>
                 </select>
                 <button type="button" class="btn btn-primary" onclick="adicionarItem()">Adicionar Item</button>
-                
             </div>
+
             <button type="submit" class="btn btn-primary">Cadastrar Empréstimo</button>
-            <button type="reset" class="btn btn-danger">Limpar Campos</button>
+            
+
             <!-- Lista de itens adicionados -->
             <ul class="list-group mt-2 mb-3" id="listaItens"></ul>
-
-            
         </form>
     </div>
 

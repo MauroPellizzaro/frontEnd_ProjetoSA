@@ -46,7 +46,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Estoque
+                            Itens
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="cadastroitem.html">Cadastrar Item</a></li>
@@ -59,8 +59,8 @@
                             Colaboradores
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="cadastropessoa.html">Cadastrar Pessoa</a></li>
-                            <li><a class="dropdown-item" href="colaborador.html">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="cadastropessoa.html">Cadastrar Colaborador</a></li>
+                            <li><a class="dropdown-item" href="visualizacaopessoas.html">Dashboard</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -114,24 +114,55 @@
                     <td>1</td>
                     <td>João Silva</td>
                     <td>joao.silva</td>
-                    <td><button class="btn btn-success">Editar</button> <button class="btn btn-danger">Excluir</button></td>
+                    <td>
+                        <button class="btn btn-success orientacao">Editar</button>
+                        <button class="btn btn-danger orientacao" data-bs-toggle="modal"
+                            data-bs-target="#confirmDeleteModal" onclick="setItemId(1)">Excluir</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>2</td>
                     <td>Maria Oliveira</td>
                     <td>maria.oliveira</td>
-                    <td><button class="btn btn-success">Editar</button> <button class="btn btn-danger">Excluir</button></td>
+                    <td>
+                        <button class="btn btn-success orientacao">Editar</button>
+                        <button class="btn btn-danger orientacao" data-bs-toggle="modal"
+                            data-bs-target="#confirmDeleteModal" onclick="setItemId(1)">Excluir</button>
+                    </td>
                 </tr>
                 <tr>
                     <td>3</td>
                     <td>Pedro Souza</td>
                     <td>pedro.souza</td>
-                    <td><button class="btn btn-success">Editar</button> <button class="btn btn-danger">Excluir</button></td>
+                    <td>
+                        <button class="btn btn-success orientacao">Editar</button>
+                        <button class="btn btn-danger orientacao" data-bs-toggle="modal"
+                            data-bs-target="#confirmDeleteModal" onclick="setItemId(1)">Excluir</button>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </div>
-
+    <!-- Modal de Confirmação de Exclusão -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza de que deseja excluir este item?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteButton"
+                        onclick="deleteItem()">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="css_script/script.js"></script>
 
     <footer class="text-center mt-5">
