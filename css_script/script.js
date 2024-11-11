@@ -83,47 +83,29 @@ function logout() {
 //=========================================================================================================================================
 
 // Empréstimo de Itens
-let itensEmprestados = [];
 
+// Função para adicionar um item à lista
 function adicionarItem() {
-    const select = document.getElementById('selectItens');
-    const itemSelecionado = select.value;
-    const pessoa = document.getElementById('pessoa').value;
+    const inputItem = document.getElementById("inputItem");
+    const itemNome = inputItem.value.trim();
 
-    const lista = document.getElementById('listaItens');
-    const div = document.createElement('div');
-    div.classList.add('input-group', 'mb-2');
+    if (itemNome) {
+        const listaItens = document.getElementById("listaItens");
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.textContent = itemNome;
 
-    const inputItem = document.createElement('input');
-    inputItem.type = 'text';
-    inputItem.classList.add('form-control');
-    inputItem.value = itemSelecionado;
-    inputItem.readOnly = true;
+        // Botão de remoção para cada item adicionado
+        const removeBtn = document.createElement("button");
+        removeBtn.className = "btn btn-danger btn-sm float-end";
+        removeBtn.textContent = "Remover";
+        removeBtn.onclick = () => listaItens.removeChild(li);
 
-    const inputPessoa = document.createElement('input');
-    inputPessoa.type = 'text';
-    inputPessoa.classList.add('form-control');
-    inputPessoa.value = pessoa;
-    inputPessoa.readOnly = true;
+        li.appendChild(removeBtn);
+        listaItens.appendChild(li);
 
-    const btnRemover = document.createElement('button');
-    btnRemover.classList.add('btn', 'btn-danger');
-    btnRemover.textContent = 'Remover';
-    btnRemover.onclick = function () {
-        div.remove();
-        // Remove o item da lista de itens emprestados
-        const index = itensEmprestados.findIndex(item => item.item === itemSelecionado);
-        if (index > -1) {
-            itensEmprestados.splice(index, 1);
-        }
-    };
-
-    div.appendChild(inputItem);
-    div.appendChild(inputPessoa);
-    div.appendChild(btnRemover);
-    lista.appendChild(div);
-
-    itensEmprestados.push({ item: itemSelecionado, pessoa: pessoa });
+        inputItem.value = ""; // Limpa o campo após adicionar o item
+    }
 }
 
 //============================funcao para cadastro item============================================================
@@ -166,7 +148,8 @@ document.getElementById('emprestimoForm').addEventListener('submit', function(ev
     
     // Captura os dados dos campos do formulário
     const nomePessoa = document.getElementById('pessoa').value;
-    const itens = Array.from(document.querySelectorAll('#listaItens li')).map(item => item.textContent);  // Captura os itens da lista
+    const itens = Array.from(document.querySelectorAll('#listaItens li'))
+                       .map(item => item.textContent.replace("Remover", "").trim());  // Captura os itens da lista
 
     // Cria o objeto com os dados do empréstimo
     const emprestimo = {
@@ -193,7 +176,6 @@ document.getElementById('emprestimoForm').addEventListener('submit', function(ev
     })
     .catch(error => console.error('Erro:', error));
 });
-
 //=============funcao para cadastro tipo item============================================================================================================================
 
 document.getElementById('formCadastroTipo').addEventListener('submit', function(event) {
@@ -469,6 +451,35 @@ function carregarPessoas() {
 // Chama a função ao carregar a página
 window.onload = function () {
     carregarPessoas();
+};
+// ===================Função para carregar usuários do servidor e preencher a tabela========================
+function carregarUsuarios() {
+    fetch('http://localhost:3002/usuarios')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = ''; // Limpa o conteúdo existente
+
+            data.forEach(usuario => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nome_usuario}</td>
+                    <td>${usuario.login}</td>
+                    <td>
+                        <button class="btn btn-success orientacao">Editar</button>
+                        <button class="btn btn-danger orientacao" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" onclick="setItemId(${usuario.id})">Excluir</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar usuários:', error));
+}
+
+// Chama a função ao carregar a página
+window.onload = function () {
+    carregarUsuarios();
 };
 
 
