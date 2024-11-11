@@ -175,7 +175,7 @@ document.getElementById('emprestimoForm').addEventListener('submit', function(ev
     };
     
     // Envia os dados para o servidor
-    fetch('http://localhost:3000/api/emprestimos', {  // Endpoint da API para cadastrar o empréstimo
+    fetch('http://localhost:3002/', {  // Endpoint da API para cadastrar o empréstimo
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -441,6 +441,80 @@ function loadTiposDeItem() {
 window.onload = function() {
     loadTiposDeItem();  // Carrega os tipos de item ao carregar a página
 };
+// =====================Função para buscar dados do servidor e preencher a tabela pessoas===========================
+function carregarPessoas() {
+    fetch('http://localhost:3002/pessoas')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = ''; // Limpa o conteúdo existente
+
+            data.forEach(pessoa => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${pessoa.id}</td>
+                    <td>${pessoa.nome}</td>
+                    <td>${pessoa.documento}</td>
+                    <td>
+                        <button class="btn btn-success orientacao">Editar</button>
+                        <button class="btn btn-danger orientacao" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" onclick="setItemId(${pessoa.id})">Excluir</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar pessoas:', error));
+}
+
+// Chama a função ao carregar a página
+window.onload = function () {
+    carregarPessoas();
+};
+
+// =======================Função para carregar usuários do servidor e preencher a tabela=============================
+function carregarUsuarios() {
+    fetch('http://localhost:3002/usuarios')
+        .then(response => response.json())
+        .then(data => {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = ''; // Limpa o conteúdo existente
+
+            data.forEach(usuario => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nome_usuario}</td>
+                    <td>${usuario.login}</td>
+                    <td>
+                        <button class="btn btn-success orientacao">Editar</button>
+                        <button class="btn btn-danger orientacao" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal" onclick="setItemId(${usuario.id})">Excluir</button>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        })
+        .catch(error => console.error('Erro ao carregar usuários:', error));
+}
+
+// Chama a função ao carregar a página
+window.onload = function () {
+    carregarUsuarios();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Função para carregar os tipos de item do backend e preencher o select
 function carregarTiposDeItem() {
     fetch('http://localhost:3000/api/tipos')
